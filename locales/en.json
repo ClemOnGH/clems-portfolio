@@ -1,0 +1,17 @@
+{
+	"intro": {
+		"hi": "Hi, I'm",
+		"desc": "I'm a junior web developer from France with a little bit of experience in frontend and backend."
+	},
+	"tech": {
+		"desc": "Some stuff I dealt with in the past :",
+		"languages": "Languages",
+		"backend": "Backend",
+		"frontend": "frontend"
+	},
+	"links": {
+		"mdn_html": "https://developer.mozilla.org/en-US/docs/Web/HTML",
+		"mdn_css": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+		"mdn_js": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+	}
+}

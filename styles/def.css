@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap");
+:root {
+	--acc: hsl(210, 100%, 70%);
+	--tt-pad: 0.2em;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--ll: hsl(0, 0%, 95%);
+		--ld: hsl(0, 0%, 5%);
+	}
+}
+@media (prefers-color-scheme: light) {
+	:root {
+		--ll: hsl(0, 0%, 5%);
+		--ld: hsl(0, 0%, 95%);
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	user-select: none;
+	color: var(--ll);
+	font-family: "Google Sans Code";
+}
+
+a[target="_blank"] {
+	color: inherit;
+}
+
+a {
+	text-decoration: none;
+}
+
+body {
+	background: var(--ld);
+}
+
+header {
+	background: var(--ll);
+}
+
+header * {
+	padding: 0.5em 1em;
+	color: var(--ld);
+	display: inline-block;
+}
+
+header a {
+	float: right;
+	position: relative;
+	cursor: pointer;
+}
+
+header a:hover {
+	background: var(--ld);
+	color: var(--ll);
+}
+
+header a::after {
+	content: "";
+	pointer-events: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, var(--ll), transparent);
+	transform: scaleY(0);
+	transition: transform 100ms;
+	transform-origin: center top;
+}
+
+header a:hover::after {
+	transform: scaleY(1);
+}
+
+main section {
+	will-change: background-position;
+	margin: 2em 8em;
+	outline: 1px solid var(--ll);
+	border-radius: 0 0 20px 0;
+	background: var(--ld);
+	padding: 2em;
+	filter: drop-shadow(5px 5px 0 rgba(0, 0, 0, 0.5));
+}
+
+#intro {
+	position: relative;
+	margin-top: 4em;
+	padding-left: 6em;
+}
+
+#intro p {
+	font-size: 20px;
+	opacity: 0.5;
+}
+
+#avatar img {
+	height: 120px;
+	position: absolute;
+	display: block;
+	top: 20px;
+	left: -31px;
+	cursor: pointer;
+}
+
+#avatar::after {
+	content: "Src: AdvosArts";
+	position: absolute;
+	top: -28px;
+	left: -1px;
+	width: minmax(auto, calc(100% - var(--tt-pad) - 1px));
+	padding: var(--tt-pad);
+	background: white;
+	color: black;
+	z-index: -1;
+	transform: scaleY(0);
+	transition: transform 160ms;
+	transform-origin: center bottom;
+}
+
+#avatar:hover::after {
+	transform: scaleY(1);
+}
+
+#techs ul {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	margin: 0.5em 0;
+	list-style-type: none;
+}
+
+#techs ul .tech-title::before {
+	content: "+";
+	margin-right: 0.5em;
+	display: inline-block;
+	transition: transform 100ms;
+}
+
+#techs ul .tech-title::after {
+	content: ":";
+}
+
+#techs ul:hover .tech-title::before {
+	transform: rotate(45deg);
+}
+
+.tech-value {
+	border-radius: 6px;
+	padding: 0.2em 0.5em;
+	outline: 1px solid hsla(from var(--ll) h s l / 0.2);
+	color: hsla(from var(--ll) h s l / 0.8);
+	cursor: pointer;
+	transition:
+		color 100ms,
+		outline-color 100ms;
+}
+
+.tech-value:hover {
+	color: var(--acc);
+	outline-color: var(--acc);
+}
