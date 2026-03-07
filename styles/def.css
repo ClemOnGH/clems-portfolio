@@ -80,10 +80,17 @@ main section {
 	will-change: background-position;
 	margin: 2em 8em;
 	outline: 1px solid var(--ll);
-	border-radius: 0 0 20px 0;
 	background: var(--ld);
 	padding: 2em;
 	filter: drop-shadow(5px 5px 0 rgba(0, 0, 0, 0.5));
+}
+
+main section:first-child {
+    border-radius: 20px 0 0 0;
+}
+
+main section:last-child {
+ border-radius: 0 0 20px 0;
 }
 
 #intro {
