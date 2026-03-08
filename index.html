@@ -10,9 +10,9 @@
 		<main>
 			<header>
 				<p>portfolio.clem</p>
-				<a href="#">/contact</a>
-				<a href="#">/projects</a>
-				<a href="#techs">/techs</a>
+				<a data-highlight="true" href="#contact">/contact</a>
+				<a data-highlight="true" href="#projects">/projects</a>
+				<a data-highlight="true" href="#techs">/techs</a>
 			</header>
 			<section id="intro">
 				<div id="avatar">
@@ -20,11 +20,11 @@
 						<img src="./peekolu.png" alt="A Riolu peeking through the screen; drawn by Advos Arts." />
 					</a>
 				</div>
-				<h1>Hi, I'm <span style="color: var(--acc)">Clément</span>!</h1>
+				<h1>Hi, I'm <span class="clr-accent">Clément</span>!</h1>
 				<p>I'm a junior web developer from France with a little bit of experience in both front and backend web dev.</p>
 			</section>
 			<section id="techs">
-				<h3>Some stuff I dealt with in the past...</h3>
+				<h3>Some stuff I've used with in the past :</h3>
 				<ul>
 					<li class="tech-title">Languages</li>
 					<li class="tech-value">HTML</li>
@@ -45,6 +45,28 @@
 					<li class="tech-title">Databases</li>
 					<li class="tech-value">MongoDB</li>
 				</ul>
+
+				<h3>And some stuff I'm currently learning :</h3>
+				<ul>
+					<li class="tech-title">Languages</li>
+					<li class="tech-value">Java</li>
+				</ul>
+				<ul>
+					<li class="tech-title">Backend</li>
+					<li class="tech-value">NestJS</li>
+				</ul>
+			</section>
+			<section id="projects">
+				<div id="project_header">
+					<label data-highlight="true">
+						<p>/finished</p>
+						<input type="radio" name="display_projects" checked />
+					</label>
+					<label data-highlight="true">
+						<p>/ongoing</p>
+						<input type="radio" name="display_projects" />
+					</label>
+				</div>
 			</section>
 		</main>
 	</body>
