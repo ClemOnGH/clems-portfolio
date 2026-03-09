@@ -16,8 +16,11 @@
 			</header>
 			<section id="intro">
 				<div id="avatar">
-					<a href="https://x.com/AdvosArt/status/1678869842148073472" target="_blank">
-						<img src="./peekolu.png" alt="A Riolu peeking through the screen; drawn by Advos Arts." />
+					<a data-device="desktop" href="https://x.com/AdvosArt/status/1678869842148073472" target="_blank">
+						<img src="./peekolu_desktop.png" alt="A Riolu peeking through the screen; drawn by Advos Arts." />
+					</a>
+					<a data-device="mobile" href="https://x.com/AdvosArt/status/1678869842148073472" target="_blank">
+						<img src="./peekolu_mobile.png" alt="A Riolu peeking through the screen; drawn by Advos Arts." />
 					</a>
 				</div>
 				<h1>Hi, I'm <span class="clr-accent">Clément</span>!</h1>
@@ -57,15 +60,23 @@
 				</ul>
 			</section>
 			<section id="projects">
-				<div id="project_header">
-					<label data-highlight="true">
+				<input type="radio" id="projects_finished" name="display_projects" checked />
+				<input type="radio" id="projects_ongoing" name="display_projects" />
+				<div id="projects_header">
+					<label for="projects_finished">
 						<p>/finished</p>
-						<input type="radio" name="display_projects" checked />
 					</label>
-					<label data-highlight="true">
+					<label for="projects_ongoing">
 						<p>/ongoing</p>
-						<input type="radio" name="display_projects" />
 					</label>
+				</div>
+				<div id="projects_content">
+					<div class="content finished empty">
+						<p>No finished projects (yet)</p>
+					</div>
+					<div class="content ongoing empty">
+						<p>No ongoing projects (yet)</p>
+					</div>
 				</div>
 			</section>
 		</main>

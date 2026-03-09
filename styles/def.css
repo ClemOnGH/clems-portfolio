@@ -83,6 +83,7 @@ main section {
 	padding: 2em;
 	filter: drop-shadow(5px 5px 0 rgba(0, 0, 0, 0.5));
 	overflow: hidden;
+	transition: margin 150ms;
 }
 
 main section:first-of-type {
@@ -105,20 +106,32 @@ main section:last-child {
 #intro {
 	position: relative;
 	padding-left: 6em;
+	transition: padding 150ms;
 }
 
 #intro p {
 	font-size: 20px;
 	opacity: 0.5;
+	text-align: justify;
 }
 
-#avatar img {
-	height: 120px;
+#avatar a img {
 	position: absolute;
 	display: block;
+	cursor: pointer;
+}
+
+#avatar a[data-device="desktop"] img {
+	height: 120px;
 	top: 20px;
 	left: -31px;
-	cursor: pointer;
+}
+
+#avatar a[data-device="mobile"] img {
+	height: 60px;
+	bottom: 0;
+	right: 20px;
+	display: none;
 }
 
 #avatar::after {
@@ -196,34 +209,39 @@ main section:last-child {
 	display: none;
 }
 
-#project_header {
+#projects_header {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 }
 
-#project_header {
+#projects_header {
 	background: var(--ll);
 }
 
-#project_header label {
-	padding: 0.5em 1em;
+#projects_header label {
+	padding: 0.5em;
+	cursor: pointer;
+	position: relative;
 }
 
-#project_header p {
+#projects_header p {
 	color: var(--ld);
 }
 
-#project_header label:has(input:checked) {
+#projects_finished:checked ~ #projects_header label[for="projects_finished"],
+#projects_ongoing:checked ~ #projects_header label[for="projects_ongoing"] {
 	background: var(--ld);
+	padding: 0.5em 1em;
 }
 
-#project_header label:has(input:checked) p {
+#projects_finished:checked ~ #projects_header label[for="projects_finished"] p,
+#projects_ongoing:checked ~ #projects_header label[for="projects_ongoing"] p {
 	color: var(--ll);
 }
 
-#project_header p::before,
-#project_header p::after {
+#projects_header p::before,
+#projects_header p::after {
 	display: inline-block;
 	transform: scaleX(0);
 	transition:
@@ -231,28 +249,90 @@ main section:last-child {
 		margin 100ms;
 }
 
-#project_header p::before {
+#projects_header p::before {
 	content: ">";
 	margin-right: 0;
 	transform-origin: center right;
 }
 
-#project_header p::after {
+#projects_header p::after {
 	content: "<";
-	transform: scaleX(0);
+	margin-left: 0;
 	transform-origin: center left;
 }
 
-#project_header label:has(input:checked) p::before {
+#projects_header label::before,
+#projects_header label::after {
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	transform: scaleY(0);
+	transform-origin: top center;
+	background: linear-gradient(to bottom, var(--ll), transparent);
+	transition: transform 100ms;
+}
+
+#projects_finished:not(:checked) ~ #projects_header label[for="projects_finished"]:hover::before,
+#projects_finished:not(:checked) ~ #projects_header label[for="projects_finished"]:hover::after,
+#projects_ongoing:not(:checked) ~ #projects_header label[for="projects_ongoing"]:hover::before,
+#projects_ongoing:not(:checked) ~ #projects_header label[for="projects_ongoing"]:hover::after {
+	transform: scaleY(1);
+}
+
+#projects_finished:not(:checked) ~ #projects_header label[for="projects_finished"]:hover,
+#projects_ongoing:not(:checked) ~ #projects_header label[for="projects_ongoing"]:hover {
+	background: var(--ld);
+}
+
+#projects_finished:not(:checked) ~ #projects_header label[for="projects_finished"]:hover p,
+#projects_ongoing:not(:checked) ~ #projects_header label[for="projects_ongoing"]:hover p {
+	color: var(--ll);
+}
+
+#projects_finished:checked ~ #projects_header label[for="projects_finished"] p::before,
+#projects_ongoing:checked ~ #projects_header label[for="projects_ongoing"] p::before {
 	margin-right: 0.5em;
 	transform: scaleX(1);
 	animation: animateArrowLeft 0.4s infinite ease-in alternate;
 }
 
-#project_header label:has(input:checked) p::after {
+#projects_finished:checked ~ #projects_header label[for="projects_finished"] p::after,
+#projects_ongoing:checked ~ #projects_header label[for="projects_ongoing"] p::after {
 	margin-left: 0.5em;
 	transform: scaleX(1);
 	animation: animateArrowRight 0.4s infinite ease-in alternate;
+}
+
+#projects_content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#projects_content .content {
+	min-height: 400px;
+	width: 0;
+	overflow: hidden;
+	display: flex;
+	transition: width 150ms;
+}
+
+#projects_content .content.empty {
+	justify-content: center;
+	align-items: center;
+}
+
+#projects_content .empty p {
+	opacity: 0.5;
+	white-space: nowrap;
+}
+
+#projects_finished:checked ~ #projects_content .content.finished,
+#projects_ongoing:checked ~ #projects_content .content.ongoing {
+	width: 100%;
 }
 
 @keyframes animateArrowLeft {
@@ -269,5 +349,44 @@ main section:last-child {
 	}
 	100% {
 		transform: scaleX(1) translateX(-0.2em);
+	}
+}
+
+@media screen and (max-width: 800px) {
+	main section {
+		margin: 2em 4em;
+	}
+	#avatar a[data-device="desktop"] img {
+		display: none;
+	}
+	#avatar a[data-device="mobile"] img {
+		display: block;
+	}
+	#intro {
+		padding-left: 2em;
+		padding-bottom: 4em;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	main section {
+		margin: 2em;
+	}
+
+	#intro h1 {
+		font-size: 24px;
+	}
+
+	#intro p {
+		font-size: 16px;
+		text-align: left;
+	}
+
+	#intro {
+		padding-bottom: 40px;
+	}
+
+	#avatar a[data-device="mobile"] img {
+		height: 40px;
 	}
 }
